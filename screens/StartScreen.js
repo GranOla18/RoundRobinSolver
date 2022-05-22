@@ -6,8 +6,6 @@ import { View, TextInput, Text, Button } from 'react-native'
 const StartScreen = ({onSolve}) => {
     const [processes, setProcesses] = useState(1)
     const [quatntum, setQuatntum] = useState(1)
-
-    console.log('processes', processes)
     
     const onChangeProcesses = (numProc) => {
         if(!numProc){

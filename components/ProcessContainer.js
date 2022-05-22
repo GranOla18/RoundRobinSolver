@@ -13,7 +13,10 @@ export default ProcessContainer
 
 const styles = StyleSheet.create({
     processContainer: {
-      flex: 1,
-      alignItems: 'center',
+        padding: 20,
+        margin: 10,
+        flexDirection: 'row',
+        backgroundColor: 'blue',
+        alignItems: 'center',
     },
-  });
+});
