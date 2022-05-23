@@ -7,7 +7,6 @@ class Process {
     }
 }
 
-const names=['A', 'B' ,'C', 'D', 'E', 'F', 'G', 'H'];
 const lengths=[7, 3, 9, 8, 10, 12, 6, 5];
 const startTimes=[0, 2, 4, 12, 16, 22, 25, 28];
 let amount=8;
@@ -15,7 +14,7 @@ let amount=8;
 const processArray=[];
 
 for(var i=0;i<amount;i++){
-    processArray.push(new Process(names[i], lengths[i], startTimes[i]));
+    processArray.push(new Process(i, lengths[i], startTimes[i]));
 }
 
 
@@ -84,6 +83,10 @@ do{
     time++;
 
 }while(ended.length<amount);
+
+ended.sort((a, b) => {
+    return a.name - b.name;
+});
 
 
 ended.forEach(element => {
