@@ -1,5 +1,5 @@
 {
-  "homepage": "https://granola18.github.io/RoundRobinSolver/",
+  "homepage": "http://granola18.github.io/RoundRobinSolver",
   "name": "roundrobinsolver",
   "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
