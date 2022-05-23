@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react'
 import { StyleSheet, Text, View, TextInput } from 'react-native';
 import StartScreen from './screens/StartScreen';
 import Solver from './screens/SolverScreen';
+import Header from './components/Header';
+import Colors from './constants/colors';
 
 export default function App() {
 
@@ -28,6 +30,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      <Header title={'Solver de Round Robin'}/>
       {content}
     </View>
   );
@@ -36,5 +39,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: Colors.tertiary
   },
 });
