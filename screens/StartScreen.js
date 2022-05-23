@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { StyleSheet, View, TextInput, Text, Button, Modal, SafeAreaView } from 'react-native'
 import SetValueContainer from '../components/SetValueContainer'
 import ShowValuesContainer from '../components/ShowValuesContainer'
+import Colors from '../constants/colors';
 
 const StartScreen = ({onSolve}) => {
     const [processes, setProcesses] = useState(0)
@@ -50,10 +51,11 @@ const StartScreen = ({onSolve}) => {
     
 
     return (
-    <SafeAreaView>
-        <View>
-            <Text>Ingrese el valor del quantum en ticks: </Text>
+    <SafeAreaView style={styles.screen}>
+        <View style={styles.container}>
+            <Text style={styles.quantumText}>Ingrese el valor del quantum en ticks: </Text>
             <TextInput
+                style={styles.quantumText}
                 placeholder='Quantum en ticks'
                 onChangeText={q => setQuantum(q)}
             />
@@ -105,7 +107,22 @@ export default StartScreen
 
 const styles = StyleSheet.create({
     screen: {
-
+        flex: 1,
+        alignItems: 'center',
+    },  
+    container: {
+        margin: 20,
+        padding: 10,
+        borderWidth: 2,
+        backgroundColor: Colors.quaternary,
+        borderColor: Colors.quinary,
+        borderRadius: 10,
+        alignItems: 'center',
+    },
+    quantumText: {
+        fontSize: 17,
+        margin: 5,
+        textAlign: 'center'
     },
     modalContainer: {
         width: '50%',
