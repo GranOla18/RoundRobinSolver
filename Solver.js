@@ -1,3 +1,8 @@
+import SolverScreen from "./screens/SolverScreen";
+
+const Solver = ({numProc, quantum, starts, durations}) => {
+
+
 class Process {
     constructor(name, duration, starts) {
         this.name = name;
@@ -11,21 +16,18 @@ class Process {
 //1 = Being processed
 //2 = N/A
 
-const durations=[7, 3, 9, 8, 10, 12, 6, 5];
-const startTimes=[0, 2, 4, 12, 16, 22, 25, 28];
-let amount=8;
-
 const processArray=[];
 
-for(var i=0;i<amount;i++){
-    processArray.push(new Process(i, durations[i], startTimes[i]));
+for(var i=0;i<numProc;i++){
+    processArray.push(new Process(i, durations[i], starts[i]));
 }
+
+console.log('processArray', processArray)
 
 let time=0;
 
 //Tick per quantum
 let pass=0;
-let quantum=5;
 
 //Processes in the waiting line
 const line=[];
@@ -94,7 +96,7 @@ do{
 
     time++;
 
-}while(ended.length<amount);
+}while(ended.length<numProc);
 
 ended.sort((a, b) => {
     return a.name - b.name;
@@ -105,4 +107,9 @@ ended.forEach(element => {
     console.log(element.name, element.result);
 });
 
-export default logic;
+return (
+    <SolverScreen ended={ended}/>
+)
+}
+
+export default Solver;
