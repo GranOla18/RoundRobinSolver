@@ -1,25 +1,16 @@
 import React from 'react'
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, View, SafeAreaView } from 'react-native'
+import Colors from '../constants/colors';
 
-const showValuesContainer = ({children}) => {
+const showValuesContainer = ({children, style}) => {
   return (
-    <View>{children}</View>
+    <SafeAreaView style={[styles.valuesContainer, style]}>{children}</SafeAreaView>
   )
 }
 
 export default showValuesContainer
 
 const styles = StyleSheet.create({
-    screen: {
-
+    valuesContainer: {
     },
-    modalContainer: {
-        width: '50%',
-        alignItems: 'center',
-        justifyContent: 'center',
-        alignSelf: 'center',
-    },
-    valueContainer: {
-        backgroundColor: 'blue'
-    }
 });

@@ -32,10 +32,10 @@ const StartScreen = ({onSolve}) => {
         console.log('modalVisible', modalVisible)
 
         valueSetterContainers.push(
-            <SetValueContainer key={processes}>
-                <Text>Proceso {processes + 1}</Text>
-                <Text>Tiempo de entrada: {procStart[processes]}</Text>
-                <Text>Duración del proceso: {procDuration[processes]}</Text>
+            <SetValueContainer key={processes} style={styles.show}>
+                <Text style={styles.showProcess}>Proceso {processes + 1}</Text>
+                <Text style={styles.showInfo}>Tiempo de entrada: {procStart[processes]}</Text>
+                <Text style={styles.showInfo}>Duración del proceso: {procDuration[processes]}</Text>
             </SetValueContainer>
         );
 
@@ -71,7 +71,7 @@ const StartScreen = ({onSolve}) => {
                 animationType={'slide'}
             >
                 <SafeAreaView style={styles.modalContent}>
-                    <SetValueContainer>
+                    <SetValueContainer style={styles.input}>
                         <Text style={styles.processTitle}>Proceso {processes + 1}</Text>
                         <Text style={styles.processData}>Tiempo de entrada del proceso</Text>
                         <TextInput
@@ -85,12 +85,12 @@ const StartScreen = ({onSolve}) => {
                             placeholder='Duración del proceso'
                             onChangeText={procDur => addProcDur(processes, procDur)}
                         />
-                        <Button
-                            color={Colors.quinary}
-                            title='Establecer proceso'
-                            onPress={() => addProcess()}
-                        />
                     </SetValueContainer>
+                    <Button
+                        color={Colors.quinary}
+                        title='Establecer proceso'
+                        onPress={() => addProcess()}
+                    />
                 </SafeAreaView>
             </Modal>
         </View>
@@ -105,6 +105,7 @@ const StartScreen = ({onSolve}) => {
         </View>
 
         <Button
+            color={Colors.quinary}
             title='Resolver'
             onPress={ () => onSolve(processes, quantum, procStart, procDuration, 1) }
         />
@@ -149,20 +150,28 @@ const styles = StyleSheet.create({
         transform: 'uppercase',
         fontSize: 10,
         color: Colors.tertiary
-        
     },
+    input: {
+        backgroundColor: Colors.quaternary,
+        width: '60%',
+        padding: 100,
+    },
+    show: {
+        borderWidth: 2,
+        borderColor: Colors.primary,
+        borderRadius: 10,
+        backgroundColor: Colors.secondary,
+    },  
     modalContainer: {
-        
         alignItems: 'center',
         justifyContent: 'center',
         alignContent: 'center',
     },
     modalContent: {
-        marginTop: '10%',
-        width: '20%',
+        marginTop: '15%',
+        width: '30%',
         height: '30%',
         textAlign: 'center',
-
         borderRadius: 10,
         alignItems: 'center',
         justifyContent: 'center',
@@ -187,5 +196,18 @@ const styles = StyleSheet.create({
     },
     valueContainer: {
         backgroundColor: 'blue'
+    },
+    showProcess: {
+        fontSize: 20,
+        color: Colors.primary,
+        fontWeight: 'bold',
+        marginHorizontal: 10,
+        marginTop: 10,
+        marginBottom: 5,
+    },
+    showInfo: {
+        fontSize: 15,
+        marginBottom: 10,
+        marginHorizontal: 15,
     }
 });

@@ -1,6 +1,6 @@
 import SolverScreen from "./screens/SolverScreen";
 
-const Solver = ({numProc, quantum, starts, durations}) => {
+const Solver = ({numProc, quantum, starts, durations, restart}) => {
 
 
 class Process {
@@ -108,7 +108,7 @@ ended.forEach(element => {
 });
 
 return (
-    <SolverScreen ended={ended}/>
+    <SolverScreen numProc={numProc} quantum={quantum} starts={starts} durations={durations} ended={ended} restart={restart}/>
 )
 }
 

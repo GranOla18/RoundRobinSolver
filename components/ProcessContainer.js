@@ -1,5 +1,6 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
+import Colors from '../constants/colors';
 
 const ProcessContainer = ({children}) => {
   return (
@@ -14,8 +15,8 @@ export default ProcessContainer
 const styles = StyleSheet.create({
     processContainer: {
         padding: 20,
-        margin: 10,
+        marginBottom: 5,
         flexDirection: 'row',
-        backgroundColor: 'blue',
+        backgroundColor: Colors.secondary,
     },
 });

@@ -1,9 +1,11 @@
 import React from 'react'
 import { StyleSheet, SafeAreaView } from 'react-native'
+import Colors from '../constants/colors';
 
-const SetValueContainer = ({children}) => {
+
+const SetValueContainer = ({children, style}) => {
     return (
-      <SafeAreaView style={styles.processContainer}>
+      <SafeAreaView style={[styles.valuesContainer, style]}>
           {children}
       </SafeAreaView>
     )
@@ -12,12 +14,14 @@ const SetValueContainer = ({children}) => {
 export default SetValueContainer
 
 const styles = StyleSheet.create({
-    processContainer: {
-        flex: 1,
-        padding: 10,
+  valuesContainer: {
+    padding: '100%',
         margin: 10,
+        flex:1,
         alignItems: 'center',
         justifyContent: 'center',
+        alignSelf: 'center',
         textAlign: 'center',
-    },
+        backgroundColor: Colors.secondary,
+},
 });

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { StyleSheet, Text, View, TextInput } from 'react-native';
+import { StyleSheet, Text, View, TextInput, SafeAreaView } from 'react-native';
 import StartScreen from './screens/StartScreen';
 import SolverScreen from './screens/SolverScreen';
 import Solver from './Solver';
@@ -23,21 +23,29 @@ export default function App() {
     setAppState(state)
   }
 
+  const onRestart = () => {
+    setNumProc(undefined)
+    setQuamtum(undefined)
+    setStarts([])
+    setDurations([])
+    setAppState(0)
+  }
+
   useEffect(() => {
     if(appState === 0){
       setContent(<StartScreen onSolve={onSetValues}/>)
     }
     else if (appState === 1){
-      setContent(<Solver numProc={numProc} quantum={quantum} starts={starts} durations={durations} />)
+      setContent(<Solver numProc={numProc} quantum={quantum} starts={starts} durations={durations} restart={onRestart} />)
     }
   }, [appState])
   
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Header title={'Solver de Round Robin'}/>
       {content}
-    </View>
+    </SafeAreaView>
   );
 }
 
