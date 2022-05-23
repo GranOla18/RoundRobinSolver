@@ -1,82 +1,119 @@
 import React from 'react'
-import { useState } from 'react'
-import { StyleSheet, View, TextInput, Text, Button, Modal } from 'react-native'
+import { useState, useEffect } from 'react'
+import { StyleSheet, View, TextInput, Text, Button, Modal, SafeAreaView } from 'react-native'
+import SetValueContainer from '../components/SetValueContainer'
+import ShowValuesContainer from '../components/ShowValuesContainer'
 
 const StartScreen = ({onSolve}) => {
-    const [processes, setProcesses] = useState(1)
-    const [quatntum, setQuatntum] = useState(1)
+    const [processes, setProcesses] = useState(0)
+    const [quantum, setQuantum] = useState(1)
+
+    const [procStart, setProcStart] = useState([])
+    const [procDuration, setProcDuration] = useState([])
+    const [valueSetterContainers, setValueSetterContainers] = useState([])
+
+    const [values, setValues] = useState(undefined)
     const [modalVisible, setModalVisible] = useState(false);
-    
-    const onChangeProcesses = (numProc) => {
-        if(!numProc){
-            return 0
-        }
-        setProcesses(parseInt(numProc));
-        console.log('numProc', numProc)
+
+    const addProcStart = (idx, start) => {
+        procStart[idx] = start
     }
 
-    const onChangeQuantum = (numQ) => {
-        setQuatntum(numQ)
-        console.log('numQ', numQ)
+    const addProcDur = (idx, dur) => {
+        procDuration[idx] = dur
     }
+
+    const addProcess = () => {
+        setProcesses(processes+1)
+        console.log('processes', processes)
+        setModalVisible(false)
+        console.log('modalVisible', modalVisible)
+
+        valueSetterContainers.push(
+            <SetValueContainer key={processes}>
+                <Text>Proceso {processes + 1}</Text>
+                <Text>Tiempo de entrada: {procStart[processes]}</Text>
+                <Text>Duración del proceso: {procDuration[processes]}</Text>
+            </SetValueContainer>
+        );
+
+        setValues(<ShowValuesContainer>{valueSetterContainers}</ShowValuesContainer>)
+    }
+
+    useEffect(() => {
+        console.log('procStart', procStart)
+        console.log('procDuration', procDuration)
+    }, [processes])
+
+    console.log('processes', processes)
+    console.log('quantum', quantum)
+    
 
     return (
-    <View>
+    <SafeAreaView>
         <View>
-            <Text>Ingrese la cantidad de procesos: </Text>
-            <TextInput
-                placeholder='Cantidad de Procesos'
-                onChangeText={newText => onChangeProcesses(newText)}
-            />
-
             <Text>Ingrese el valor del quantum en ticks: </Text>
             <TextInput
                 placeholder='Quantum en ticks'
-                onChangeText={q => onChangeQuantum(q)}
+                onChangeText={q => setQuantum(q)}
             />
         </View>
-        
+
+        {values}
 
         <Modal
             transparent={false}
             visible={modalVisible}
             animationType={'slide'}
         >
-            <View style={styles.modalContainer}>
-                <TextInput
-                    placeholder='Tiempo de entrada del proceso'
-                />
-                <TextInput
-                    placeholder='Duración del proceso'
-                />
-            </View>
-            <Button
-                title='Editar Valores'
-                onPress={ () => setModalVisible(false) }
-            />
-            <Button
-                title='Resolver'
-                onPress={ () => onSolve(processes, quatntum, 1) }
-            />
+            <SafeAreaView>
+                <SetValueContainer>
+                    <Text>Proceso {processes + 1}</Text>
+                    <Text>Tiempo de entrada del proceso</Text>
+                    <TextInput
+                        placeholder='Tiempo de entrada'
+                        onChangeText={procStrt => addProcStart(processes, procStrt)}
+                    />
+                    <Text>Duración del proces</Text>
+                    <TextInput
+                        placeholder='Duración del proceso'
+                        onChangeText={procDur => addProcDur(processes, procDur)}
+                    />
+                    <Button
+                        title='Establecer proceso'
+                        onPress={() => addProcess()}
+                    />
+                </SetValueContainer>
+            </SafeAreaView>
         </Modal>
 
         <Button
-            title='Añadir valores'
-            onPress={() => setModalVisible(!modalVisible)}
+            title='Añadir proceso'
+            onPress={() => setModalVisible(true)}
         />
 
-    </View>
+        <Button
+            title='Resolver'
+            onPress={ () => onSolve(processes, quantum, 1) }
+        />
+
+    </SafeAreaView>
   )
 }
 
 export default StartScreen
 
 const styles = StyleSheet.create({
+    screen: {
+
+    },
     modalContainer: {
-        height: '50%',
         width: '50%',
         alignItems: 'center',
         justifyContent: 'center',
         alignSelf: 'center',
     },
+    valueContainer: {
+        backgroundColor: 'blue'
+    }
 });
