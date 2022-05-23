@@ -6,8 +6,6 @@ import ProcessContainer from '../components/ProcessContainer'
 
 const Solver = ({numProc, quantum}) => {
 
-
-    
     let processes = []
     let procQueue = []
     let content = []
