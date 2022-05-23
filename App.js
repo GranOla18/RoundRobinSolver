@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { StyleSheet, Text, View, TextInput } from 'react-native';
 import StartScreen from './screens/StartScreen';
-import Solver from './screens/Solver';
+import Solver from './screens/SolverScreen';
 
 export default function App() {
 

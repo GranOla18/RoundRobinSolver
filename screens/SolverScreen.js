@@ -9,20 +9,31 @@ const Solver = ({numProc, quantum}) => {
 
     
     let processes = []
-    
+    let procQueue = []
+    let content = []
+    let process = 1;
+    let done = false
+
+    console.log('process', process)
+
     for (var i = 0; i < numProc; i++) {
-        processes.push(<Text style={styles.process}>Proceso {i}</Text>)
-    }   
-    
+        processes.push(<ProcessContainer key={i + 10}>{content}</ProcessContainer>)
+    }
+
+    do {
+        content.push(
+            <Text key={process} style={styles.process}>Proceso {i}</Text>
+        )
+        if(process === 4) {
+            done = true
+            console.log('Aki')
+        }
+        process++
+    } while(!done)
   
   return (
       <View style={styles.screen}>
-          <ProcessContainer>
-            {processes}
-          </ProcessContainer>
-          <ProcessContainer>
-            {processes}
-          </ProcessContainer>
+          {processes}
       </View>
       
     )
