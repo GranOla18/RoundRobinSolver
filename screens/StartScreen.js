@@ -75,13 +75,13 @@ const StartScreen = ({onSolve}) => {
                         <Text style={styles.processTitle}>Proceso {processes + 1}</Text>
                         <Text style={styles.processData}>Tiempo de entrada del proceso</Text>
                         <TextInput
-                            style={styles.processData}
+                            style={styles.processDataVal}
                             placeholder='Tiempo de entrada'
                             onChangeText={procStrt => addProcStart(processes, procStrt)}
                         />
                         <Text style={styles.processData}>Duración del proces</Text>
                         <TextInput
-                            style={styles.processData}
+                            style={styles.processDataVal}
                             placeholder='Duración del proceso'
                             onChangeText={procDur => addProcDur(processes, procDur)}
                         />
@@ -161,6 +161,8 @@ const styles = StyleSheet.create({
         marginTop: '10%',
         width: '20%',
         height: '30%',
+        textAlign: 'center',
+
         borderRadius: 10,
         alignItems: 'center',
         justifyContent: 'center',
@@ -177,7 +179,11 @@ const styles = StyleSheet.create({
     processData: {
         fontSize: 15,
         margin: 5,
-        paddingBottom: 10,
+    },
+    processDataVal: {
+        fontSize: 15,
+        textAlign: 'center',
+        marginBottom: 13,
     },
     valueContainer: {
         backgroundColor: 'blue'
