@@ -6,6 +6,7 @@ import ProcessContainer from '../components/ProcessContainer'
 import Colors from '../constants/colors';
 import SetValueContainer from '../components/SetValueContainer';
 import ShowValuesContainer from '../components/ShowValuesContainer';
+import ShowColorCode from '../components/ShowColorCode';
 
 
 const SolverScreen = ({numProc, quantum, starts, durations, ended, restart}) => {
@@ -91,11 +92,28 @@ const SolverScreen = ({numProc, quantum, starts, durations, ended, restart}) => 
 
     
 
+    let showColorCode
+
+    let colorCode=(<ShowColorCode style={styles.showColors}>
+        <Text style={styles.showCode}>Código de color:</Text>
+        <View style={styles.colorOne}>
+        <Text  style={styles.colorText}> En espera </Text>
+        </View>
+        <View style={styles.colorTwo}>
+        <Text style={styles.colorText}> En ejecución </Text>
+        </View>
+    </ShowColorCode>)
+
+    showColorCode=(<ShowColorCode style={styles.showColors}>{colorCode}</ShowColorCode>)
+    
+
   return (
       <SafeAreaView style={styles.screen}>
+          {colorCode}
           {processes}
           
           {shower}
+          
             
           <Text style={styles.buttonContainer}>
             <Button
@@ -171,6 +189,16 @@ const styles = StyleSheet.create({
         marginTop: 10,
         marginBottom: 5,
     },
+    showCode: {
+        fontSize: 20,
+        color: Colors.primary,
+        fontWeight: 'bold',
+        marginHorizontal: 10,
+        marginTop: 10,
+        marginBottom: 10,
+        alignItems:'center',
+        justifyContent:'center'
+    },
     showInfo: {
         fontSize: 15,
         marginBottom: 10,
@@ -180,5 +208,33 @@ const styles = StyleSheet.create({
         flex:1,
         flexDirection: 'row',
         marginTop: 15,
+    }, 
+    showColors:{
+        borderWidth: 2,
+        borderColor: Colors.primary,
+        borderRadius: 10,
+        backgroundColor: Colors.secondary,
+        alignItems:'center',
+        justifyContent:'center'
+    },
+    colorOne:{
+        marginBottom: 10,
+        marginTop:10,
+        marginHorizontal: 15,
+        backgroundColor: Colors.quaternary,
+        borderWidth: 2,
+        borderColor: Colors.secondary,
+        borderRadius: 10,
+    },
+    colorTwo:{
+        marginBottom: 10,
+        marginTop: 10,
+        marginHorizontal: 15,
+        backgroundColor: Colors.quinary,
+        borderWidth: 2,
+        borderColor: Colors.secondary,
+        borderRadius: 10,
+    }, colorText:{
+        fontSize: 20,
     }
 });
